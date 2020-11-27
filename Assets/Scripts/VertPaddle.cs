@@ -21,6 +21,6 @@ public class VertPaddle : MonoBehaviour
     void FixedUpdate()
     {
 
-        _rigidbody.AddForce(0,_yspeed,0,ForceMode.VelocityChange);
+        _rigidbody.MovePosition(new Vector3(_rigidbody.position.x, _rigidbody.position.y + _yspeed, _rigidbody.position.z));
     }
 }
