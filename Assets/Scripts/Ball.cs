@@ -19,7 +19,6 @@ public class Ball : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("entra");
             _rigidBody.velocity = new Vector3(_rigidBody.velocity.x, -_rigidBody.velocity.y, _rigidBody.velocity.z) * _speedBall;
         }
     }
