@@ -4,31 +4,31 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
+
     float _speedBall;
     Rigidbody _rigidBody;
-    Vector3 _velocity;
+    public Vector3 _velocity;
 
     void Start()
     {
         _speedBall = 10f;
         _rigidBody = GetComponent<Rigidbody>();
-        _rigidBody.velocity = new Vector3(1f, 1f, 0f) * _speedBall;
+        _velocity = new Vector3(1f, 1f, 0f).normalized * _speedBall;
+        _rigidBody.velocity = _velocity;
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            _rigidBody.velocity = new Vector3(_rigidBody.velocity.x, -_rigidBody.velocity.y, _rigidBody.velocity.z) * _speedBall;
+            _velocity = new Vector3(_velocity.x, -_velocity.y, _velocity.z);
+            _rigidBody.velocity = _velocity;
         }
     }
     void FixedUpdate()
     {
-        _rigidBody.velocity = _rigidBody.velocity.normalized * _speedBall;
-        _velocity = _rigidBody.velocity;
+        _rigidBody.velocity = _velocity;
     }
 
-    private void OnCollisionEnter(Collision collision) { 
-        _rigidBody.velocity = Vector3.Reflect(_velocity, collision.contacts[0].normal);
-    }
+    public void setVelocity(Vector3 velocity) { _velocity = velocity; }
 }

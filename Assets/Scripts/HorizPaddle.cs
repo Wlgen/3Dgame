@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VertPaddle : MonoBehaviour
+public class HorizPaddle : MonoBehaviour
 {
     public GameObject ball;
     Rigidbody _rigidbody;
@@ -13,7 +13,7 @@ public class VertPaddle : MonoBehaviour
     {
         speed = 5f;
         speedchase = 2 * speed;
-        velocity = Vector3.up * speed;
+        velocity = Vector3.right * speed;
         ball = GameObject.Find("Ball");
         _rigidbody = GetComponent<Rigidbody>();
         _rigidbody.velocity = velocity;
@@ -34,13 +34,13 @@ public class VertPaddle : MonoBehaviour
         {
             velocity = -velocity;
         }
-        if (System.Math.Abs(ball.transform.position.x - transform.position.x) > 2.5)
+        if (System.Math.Abs(ball.transform.position.y - transform.position.y) > 2.5)
         {
             _rigidbody.velocity = velocity;
         }
         else
         {
-            _rigidbody.velocity = new Vector3(0, ball.transform.position.y - transform.position.y, 0);
+            _rigidbody.velocity = new Vector3(ball.transform.position.x - transform.position.x, 0, 0);
             if (_rigidbody.velocity.magnitude > 1)
             {
                 _rigidbody.velocity = _rigidbody.velocity.normalized * speedchase;
