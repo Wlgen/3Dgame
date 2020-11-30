@@ -14,13 +14,15 @@ public class VertPaddle : MonoBehaviour
     }
 
     private void OnCollisionEnter(Collision collision) {
-        _yspeed = -_yspeed;
+        if (collision.gameObject.name != "Ball")
+        {
+            _yspeed = -_yspeed;
+        }
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-
         _rigidbody.MovePosition(new Vector3(_rigidbody.position.x, _rigidbody.position.y + _yspeed, _rigidbody.position.z));
     }
 }
