@@ -123,4 +123,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7215ca1b9e4e0a4687845da86a02e08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StartDirection: {x: -1, y: 0, z: 0}
   ball: {fileID: 0}

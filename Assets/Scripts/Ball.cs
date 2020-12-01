@@ -8,9 +8,11 @@ public class Ball : MonoBehaviour
     float _speedBall;
     Rigidbody _rigidBody;
     public Vector3 _velocity;
+    bool inCollision;
 
     void Start()
     {
+        inCollision = false;
         _speedBall = 10f;
         _rigidBody = GetComponent<Rigidbody>();
         _velocity = new Vector3(1f, 1f, 0f).normalized * _speedBall;
@@ -19,7 +21,7 @@ public class Ball : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (!inCollision && Input.GetKeyDown(KeyCode.Space))
         {
             _velocity = new Vector3(_velocity.x, -_velocity.y, _velocity.z);
             _rigidBody.velocity = _velocity;
@@ -27,7 +29,17 @@ public class Ball : MonoBehaviour
     }
     void FixedUpdate()
     {
-        _rigidBody.velocity = _velocity;
+        _rigidBody.velocity = _velocity.normalized * _speedBall;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        inCollision = true;
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        inCollision = false;
     }
 
     public void setVelocity(Vector3 velocity) { _velocity = velocity; }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BallCollisionRight : MonoBehaviour
+public class BallCollisionLeft : MonoBehaviour
 {
     public GameObject parent;
     Ball parentBall;
@@ -14,7 +14,7 @@ public class BallCollisionRight : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        Debug.Log("Ball right collision");
-        parentBall._velocity = new Vector3(-System.Math.Abs(parentBall._velocity.x), parentBall._velocity.y, 0).normalized;
+        Debug.Log("Ball left collision");
+        parentBall._velocity = new Vector3(System.Math.Abs(parentBall._velocity.x), parentBall._velocity.y, 0).normalized;
     }
 }
