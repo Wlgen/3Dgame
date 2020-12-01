@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class VertPaddle : MonoBehaviour
 {
+    public Vector3 StartDirection = Vector3.up;
     public GameObject ball;
     Rigidbody _rigidbody;
     float speed, speedchase;
@@ -13,7 +14,7 @@ public class VertPaddle : MonoBehaviour
     {
         speed = 5f;
         speedchase = 2 * speed;
-        velocity = Vector3.up * speed;
+        velocity = StartDirection * speed;
         ball = GameObject.Find("Ball");
         _rigidbody = GetComponent<Rigidbody>();
         _rigidbody.velocity = velocity;

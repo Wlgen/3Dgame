@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BallCollisionUp : MonoBehaviour
+public class BallCollisionDown : MonoBehaviour
 {
     public GameObject parent;
     Ball parentBall;
@@ -14,7 +14,7 @@ public class BallCollisionUp : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Ball up collision");
-        parentBall._velocity = new Vector3(parentBall._velocity.x, -System.Math.Abs(parentBall._velocity.y), parentBall._velocity.z).normalized;
+        Debug.Log("Ball down collision");
+        parentBall._velocity = new Vector3(parentBall._velocity.x, System.Math.Abs(parentBall._velocity.y), parentBall._velocity.z).normalized;
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class HorizPaddle : MonoBehaviour
 {
+    public Vector3 StartDirection = Vector3.right;
     public GameObject ball;
     Rigidbody _rigidbody;
     float speed, speedchase;
@@ -13,7 +14,7 @@ public class HorizPaddle : MonoBehaviour
     {
         speed = 5f;
         speedchase = 2 * speed;
-        velocity = Vector3.right * speed;
+        velocity = StartDirection * speed;
         ball = GameObject.Find("Ball");
         _rigidbody = GetComponent<Rigidbody>();
         _rigidbody.velocity = velocity;
