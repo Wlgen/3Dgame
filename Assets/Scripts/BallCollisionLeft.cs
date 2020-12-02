@@ -14,7 +14,6 @@ public class BallCollisionLeft : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        Debug.Log("Ball left collision");
         parentBall._velocity = new Vector3(System.Math.Abs(parentBall._velocity.x), parentBall._velocity.y, 0).normalized;
     }
 }
