@@ -35,12 +35,20 @@ public class Ball : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         inCollision = true;
-        GameManager.Instance.SwitchState(GameManager.State.LEVELCOMPLETED);
     }
 
     private void OnCollisionExit(Collision collision)
     {
         inCollision = false;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == 8)
+        {
+            Destroy(other.gameObject);
+            GameManager.Instance.SwitchState(GameManager.State.LEVELCOMPLETED);
+        }
     }
 
     public void setVelocity(Vector3 velocity) { _velocity = velocity; }
