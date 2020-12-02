@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance { get; private set; }
 
-    public enum State { MENU, INIT, PLAY, LEVELCOMPLETED, LOADLEVEL, GAMEOVER }
+    public enum State { MENU, INST, CREDITS, INIT, PLAY, LEVELCOMPLETED, LOADLEVEL, GAMEOVER }
     State _state;
     GameObject _currentBall;
     GameObject _currentLevel;
@@ -39,6 +39,21 @@ public class GameManager : MonoBehaviour
     public void PlayClicked()
     {
         SwitchState(State.INIT);
+    }
+
+    public void MenuClicked()
+    {
+        SwitchState(State.MENU);
+    }
+
+    public void InstClicked()
+    {
+        SwitchState(State.INST);
+    }
+
+    public void CreditsClicked()
+    {
+        SwitchState(State.CREDITS);
     }
 
     void Start()
@@ -71,6 +86,12 @@ public class GameManager : MonoBehaviour
             case State.MENU:
                 Cursor.visible = true;
                 panelMenu.SetActive(true);
+                break;
+            case State.INST:
+                panelInstructions.SetActive(true);
+                break;
+            case State.CREDITS:
+                panelCredits.SetActive(true);
                 break;
             case State.INIT:
                 Cursor.visible = false;
@@ -114,6 +135,10 @@ public class GameManager : MonoBehaviour
         {
             case State.MENU:
                 break;
+            case State.INST:
+                break;
+            case State.CREDITS:
+                break;
             case State.INIT:
                 break;
             case State.PLAY:
@@ -141,6 +166,12 @@ public class GameManager : MonoBehaviour
         {
             case State.MENU:
                 panelMenu.SetActive(false);
+                break;
+            case State.INST:
+                panelInstructions.SetActive(false);
+                break;
+            case State.CREDITS:
+                panelCredits.SetActive(false);
                 break;
             case State.INIT:
                 break;
