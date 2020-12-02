@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     public enum State { MENU, INST, CREDITS, INIT, PLAY, LEVELCOMPLETED, LOADLEVEL, GAMEOVER }
     State _state;
     GameObject _currentLevel;
-    bool _isSwitchingState;
+    //bool _isSwitchingState;
 
     private int _level;
 
@@ -69,12 +69,12 @@ public class GameManager : MonoBehaviour
 
     IEnumerator SwitchDelay(State newState, float delay)
     {
-        _isSwitchingState = true;
+       // _isSwitchingState = true;
         yield return new WaitForSeconds(delay);
         EndState();
         _state = newState;
         BeginState(newState);
-        _isSwitchingState = false;
+       // _isSwitchingState = false;
     }
 
 
@@ -148,10 +148,6 @@ public class GameManager : MonoBehaviour
             case State.INIT:
                 break;
             case State.PLAY:
-                if (_currentLevel != null && _currentLevel.transform.childCount == 0 && !_isSwitchingState)
-                {
-                    SwitchState(State.LEVELCOMPLETED);
-                }
                 break;
             case State.LEVELCOMPLETED:
                 break;
