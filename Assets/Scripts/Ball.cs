@@ -35,6 +35,7 @@ public class Ball : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         inCollision = true;
+        GameManager.Instance.SwitchState(GameManager.State.LEVELCOMPLETED);
     }
 
     private void OnCollisionExit(Collision collision)

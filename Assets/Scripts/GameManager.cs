@@ -20,7 +20,6 @@ public class GameManager : MonoBehaviour
 
     public enum State { MENU, INST, CREDITS, INIT, PLAY, LEVELCOMPLETED, LOADLEVEL, GAMEOVER }
     State _state;
-    GameObject _currentBall;
     GameObject _currentLevel;
     bool _isSwitchingState;
 
@@ -91,6 +90,7 @@ public class GameManager : MonoBehaviour
                 panelInstructions.SetActive(true);
                 break;
             case State.CREDITS:
+                Cursor.visible = true;
                 panelCredits.SetActive(true);
                 break;
             case State.INIT:
@@ -104,13 +104,18 @@ public class GameManager : MonoBehaviour
                 SwitchState(State.LOADLEVEL);
                 break;
             case State.PLAY:
+                panelPlay.SetActive(true);
                 break;
             case State.LEVELCOMPLETED:
-                Destroy(_currentBall);
                 Destroy(_currentLevel);
                 Level++;
-                panelLevelCompleted.SetActive(true);
-                SwitchState(State.LOADLEVEL, 2f);
+                float timeS = 0f;
+                if (Level < levels.Length)
+                {
+                    panelLevelCompleted.SetActive(true);
+                    timeS = 2f;
+                }
+                SwitchState(State.LOADLEVEL, timeS);
                 break;
             case State.LOADLEVEL:
                 if (Level >= levels.Length)
@@ -125,6 +130,7 @@ public class GameManager : MonoBehaviour
                 break;
             case State.GAMEOVER:
                 panelGameOver.SetActive(true);
+                SwitchState(State.CREDITS, 2.5f);
                 break;
         }
     }
@@ -152,10 +158,6 @@ public class GameManager : MonoBehaviour
             case State.LOADLEVEL:
                 break;
             case State.GAMEOVER:
-                if (Input.anyKeyDown)
-                {
-                    SwitchState(State.MENU);
-                }
                 break;
         }
     }
@@ -176,6 +178,7 @@ public class GameManager : MonoBehaviour
             case State.INIT:
                 break;
             case State.PLAY:
+                panelPlay.SetActive(false);
                 break;
             case State.LEVELCOMPLETED:
                 panelLevelCompleted.SetActive(false);
