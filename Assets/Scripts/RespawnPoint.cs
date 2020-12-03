@@ -14,7 +14,6 @@ public class RespawnPoint : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("TRIGGERED");
         if (!green && other.CompareTag("Ball"))
         {
             ballScript.restartingVelocity = new Vector3(1, -1, 0);
