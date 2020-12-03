@@ -191,8 +191,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Created by Ivan D\xEDaz                                                
-    and Arnau Gesa"
+  m_Text: "Created by Ivan D\xEDaz\nand Arnau Gesa"
 --- !u!222 &100355782
 CanvasRenderer:
   m_ObjectHideFlags: 0
