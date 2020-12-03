@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
-
+    public Vector3 restartingVelocity;
+    public Vector3 restartingPositon;
     float _speedBall;
     Rigidbody _rigidBody;
     public Vector3 _velocity;
@@ -39,6 +40,11 @@ public class Ball : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (collision.gameObject.CompareTag("Death"))
+        {
+            _rigidBody.transform.position = restartingPositon;
+            _velocity = restartingVelocity.normalized;
+        }
         inCollision = true;
     }
 
@@ -47,14 +53,14 @@ public class Ball : MonoBehaviour
         inCollision = false;
     }
 
-    private void OnTriggerEnter(Collider other)
+    /*private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == 8)
         {
             Destroy(other.gameObject);
             GameManager.Instance.SwitchState(GameManager.State.LEVELCOMPLETED);
         }
-    }
+    }*/
 
     public void setVelocity(Vector3 velocity) { _velocity = velocity; }
 
