@@ -6,6 +6,9 @@ public class Ball : MonoBehaviour
 {
     public Vector3 restartingVelocity;
     public Vector3 restartingPositon;
+    public int restartingCamera = 0;
+    public GameObject LevelCamera;
+    LevelCamera lvlCam;
     float _speedBall;
     Rigidbody _rigidBody;
     public Vector3 _velocity;
@@ -14,6 +17,7 @@ public class Ball : MonoBehaviour
 
     void Start()
     {
+        lvlCam = LevelCamera.GetComponent<LevelCamera>();
         inCollision = false;
         _speedBall = 10f;
         _rigidBody = GetComponent<Rigidbody>();
@@ -44,6 +48,7 @@ public class Ball : MonoBehaviour
         {
             _rigidBody.transform.position = restartingPositon;
             _velocity = restartingVelocity.normalized;
+            lvlCam.setActualCamera(restartingCamera);
         }
         inCollision = true;
     }
