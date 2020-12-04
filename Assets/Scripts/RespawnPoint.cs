@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RespawnPoint : MonoBehaviour
 {
+    public Vector3 restartingVelocity = new Vector3(-1, -1, 0);
     public GameObject ball;
     Ball ballScript;
     bool green = false;
@@ -16,7 +17,7 @@ public class RespawnPoint : MonoBehaviour
     {
         if (!green && other.CompareTag("Ball"))
         {
-            ballScript.restartingVelocity = new Vector3(1, -1, 0);
+            ballScript.restartingVelocity = restartingVelocity.normalized;
             ballScript.restartingPositon = gameObject.transform.position;
             green = true;
             GetComponent<Renderer>().material.SetColor("_Color", Color.green);

@@ -53,8 +53,7 @@ public class Ball : MonoBehaviour
         inCollision = false;
     }
 
-    public void setVelocity(Vector3 velocity) { _velocity = velocity; }
-
+    public void setRestartingVelocity(Vector3 velocity) { _velocity = velocity; }
     private void StopParticles()
     {
         _particles.Stop();

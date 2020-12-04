@@ -8,7 +8,6 @@ public class LevelGoal : MonoBehaviour
     {
         if (other.CompareTag("Ball"))
         {
-            Debug.Log("TRIGGERED");
             GameManager.Instance.SwitchState(GameManager.State.LEVELCOMPLETED);
         }
     }

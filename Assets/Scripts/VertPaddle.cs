@@ -5,10 +5,10 @@ using UnityEngine;
 public class VertPaddle : MonoBehaviour
 {
     public Vector3 StartDirection = Vector3.up;
-    public GameObject ball;
-    Rigidbody _rigidbody;
-    float speed, speedchase;
-    Vector3 velocity, prePosition;
+    private GameObject ball;
+    private Rigidbody _rigidbody;
+    private float speed, speedchase;
+    private Vector3 velocity, prePosition;
 
     void Start()
     {
@@ -41,10 +41,13 @@ public class VertPaddle : MonoBehaviour
         }
         else
         {
-            _rigidbody.velocity = new Vector3(0, ball.transform.position.y - transform.position.y, 0);
-            if (_rigidbody.velocity.magnitude > 1)
+            if (System.Math.Abs(ball.transform.position.y - transform.position.y) < 10)
             {
-                _rigidbody.velocity = _rigidbody.velocity.normalized * speedchase;
+                _rigidbody.velocity = new Vector3(0, ball.transform.position.y - transform.position.y, 0);
+                if (_rigidbody.velocity.magnitude > 1)
+                {
+                    _rigidbody.velocity = _rigidbody.velocity.normalized * speedchase;
+                }
             }
         }
         prePosition = transform.position;
