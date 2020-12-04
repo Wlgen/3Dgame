@@ -10,6 +10,7 @@ public class Ball : MonoBehaviour
     Rigidbody _rigidBody;
     public Vector3 _velocity;
     bool inCollision;
+    ParticleSystem _particles;
 
     void Start()
     {
@@ -18,6 +19,7 @@ public class Ball : MonoBehaviour
         _rigidBody = GetComponent<Rigidbody>();
         _velocity = new Vector3(1f, 1f, 0f).normalized * _speedBall;
         _rigidBody.velocity = _velocity;
+        _particles = GetComponent<ParticleSystem>();
     }
 
     void Update()
@@ -26,8 +28,11 @@ public class Ball : MonoBehaviour
         {
             _velocity = new Vector3(_velocity.x, -_velocity.y, _velocity.z);
             _rigidBody.velocity = _velocity;
+            _particles.Play();
+            Invoke("StopParticles", 0.1f);
         }
     }
+
     void FixedUpdate()
     {
         _rigidBody.velocity = _velocity.normalized * _speedBall;
@@ -49,4 +54,8 @@ public class Ball : MonoBehaviour
     }
 
     public void setRestartingVelocity(Vector3 velocity) { _velocity = velocity; }
+    private void StopParticles()
+    {
+        _particles.Stop();
+    }
 }
