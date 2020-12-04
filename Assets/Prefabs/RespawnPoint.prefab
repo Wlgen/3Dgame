@@ -106,4 +106,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd512ad530712124084cf931385cbdce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  restartingVelocity: {x: -1, y: -1, z: 0}
   ball: {fileID: 1563615748926903514, guid: f3f61d9ec9ac6d84c8471a40f93a8d9e, type: 3}
