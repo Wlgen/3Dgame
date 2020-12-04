@@ -67,7 +67,6 @@ public class Ball : MonoBehaviour
     }
 
     public void changeDirectionWheel() {
-        Debug.Log("Holii");
         for(int i = 0; i < _wheels.Length; i++)
         {
             _wheels[i].GetComponent<WheelSpike>().changeDirection();
