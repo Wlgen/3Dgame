@@ -48,14 +48,5 @@ public class Ball : MonoBehaviour
         inCollision = false;
     }
 
-    /*private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.layer == 8)
-        {
-            Destroy(other.gameObject);
-            GameManager.Instance.SwitchState(GameManager.State.LEVELCOMPLETED);
-        }
-    }*/
-
     public void setRestartingVelocity(Vector3 velocity) { _velocity = velocity; }
 }

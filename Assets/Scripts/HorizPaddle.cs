@@ -5,10 +5,10 @@ using UnityEngine;
 public class HorizPaddle : MonoBehaviour
 {
     public Vector3 StartDirection = Vector3.right;
-    public GameObject ball;
-    Rigidbody _rigidbody;
-    float speed, speedchase;
-    Vector3 velocity, prePosition;
+    private GameObject ball;
+    private Rigidbody _rigidbody;
+    private float speed, speedchase;
+    private Vector3 velocity, prePosition;
 
     void Start()
     {
@@ -22,7 +22,7 @@ public class HorizPaddle : MonoBehaviour
     }
 
     private void OnCollisionEnter(Collision collision) {
-        if (collision.gameObject.name != "Ball")
+        if (collision.gameObject.CompareTag("Bounce"))
         {
             velocity = -velocity;
             _rigidbody.velocity = velocity;
@@ -41,10 +41,13 @@ public class HorizPaddle : MonoBehaviour
         }
         else
         {
-            _rigidbody.velocity = new Vector3(ball.transform.position.x - transform.position.x, 0, 0);
-            if (_rigidbody.velocity.magnitude > 1)
+            if (System.Math.Abs(ball.transform.position.x - transform.position.x) < 10)
             {
-                _rigidbody.velocity = _rigidbody.velocity.normalized * speedchase;
+                _rigidbody.velocity = new Vector3(ball.transform.position.x - transform.position.x, 0, 0);
+                if (_rigidbody.velocity.magnitude > 1)
+                {
+                    _rigidbody.velocity = _rigidbody.velocity.normalized * speedchase;
+                }
             }
         }
         prePosition = transform.position;
