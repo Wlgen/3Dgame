@@ -15,6 +15,8 @@ public class Ball : MonoBehaviour
     bool inCollision;
     ParticleSystem _particles;
 
+    public GameObject[] _wheels;
+
     void Start()
     {
         lvlCam = LevelCamera.GetComponent<LevelCamera>();
@@ -62,5 +64,12 @@ public class Ball : MonoBehaviour
     private void StopParticles()
     {
         _particles.Stop();
+    }
+
+    public void changeDirectionWheel() {
+        for(int i = 0; i < _wheels.Length; i++)
+        {
+            _wheels[i].GetComponent<WheelSpike>().changeDirection();
+        }
     }
 }
