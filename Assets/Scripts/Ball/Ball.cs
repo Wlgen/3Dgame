@@ -22,7 +22,7 @@ public class Ball : MonoBehaviour
     {
         lvlCam = LevelCamera.GetComponent<LevelCamera>();
         inCollision = false;
-        _speedBall = 10f;
+        _speedBall = 12f;
         _rigidBody = GetComponent<Rigidbody>();
         _velocity = new Vector3(1f, 1f, 0f).normalized * _speedBall;
         _rigidBody.velocity = _velocity;
