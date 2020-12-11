@@ -35,7 +35,7 @@ public class VertPaddle : MonoBehaviour
         {
             velocity = -velocity;
         }
-        if (System.Math.Abs(ball.transform.position.x - transform.position.x) > 2.5)
+        if (System.Math.Abs(ball.transform.position.x - transform.position.x) > 3)
         {
             _rigidbody.velocity = velocity;
         }
