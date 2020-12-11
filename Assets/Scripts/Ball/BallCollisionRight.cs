@@ -16,8 +16,16 @@ public class BallCollisionRight : MonoBehaviour
     {
         if (collision.CompareTag("Bounce"))
         {
-            parentBall._velocity = new Vector3(-System.Math.Abs(parentBall._velocity.x), parentBall._velocity.y, 0).normalized;
+            parentBall.setCollisionRight(true);
             parentBall.changeDirectionWheel();
+        }
+    }
+
+    private void OnTriggerExit(Collider collision)
+    {
+        if (collision.CompareTag("Bounce"))
+        {
+            parentBall.setCollisionRight(false);
         }
     }
 }
