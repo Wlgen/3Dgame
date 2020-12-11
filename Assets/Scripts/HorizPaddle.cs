@@ -35,7 +35,7 @@ public class HorizPaddle : MonoBehaviour
         {
             velocity = -velocity;
         }
-        if (System.Math.Abs(ball.transform.position.y - transform.position.y) > 2.5)
+        if (System.Math.Abs(ball.transform.position.y - transform.position.y) > 3)
         {
             _rigidbody.velocity = velocity;
         }
