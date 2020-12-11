@@ -56,7 +56,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.25, y: 0.01, z: 0.25}
+  m_Size: {x: 0.5, y: 0.01, z: 0.5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1563615748926903514
 GameObject:
@@ -189,7 +189,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   restartingVelocity: {x: 0, y: 0, z: 0}
   restartingPositon: {x: 0, y: 0, z: 0}
+  restartingCamera: 0
+  LevelCamera: {fileID: 0}
   _velocity: {x: 0, y: 0, z: 0}
+  _wheels: []
 --- !u!198 &2966166053787971570
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -4968,7 +4971,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.01, y: 0.25, z: 0.25}
+  m_Size: {x: 0.01, y: 0.5, z: 0.5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5572665987359299641
 GameObject:
@@ -5026,7 +5029,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.25, y: 0.01, z: 0.25}
+  m_Size: {x: 0.5, y: 0.01, z: 0.5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6518657020525153298
 GameObject:
@@ -5084,5 +5087,5 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.01, y: 0.25, z: 0.25}
+  m_Size: {x: 0.01, y: 0.5, z: 0.5}
   m_Center: {x: 0, y: 0, z: 0}
