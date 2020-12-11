@@ -185,7 +185,7 @@ GameObject:
   - component: {fileID: 6747751319122794577}
   - component: {fileID: 104313867964088737}
   m_Layer: 9
-  m_Name: GameObject
+  m_Name: GlowObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
