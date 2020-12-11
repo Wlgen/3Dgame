@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4259567616930853138}
   - component: {fileID: 5735814853540327256}
   - component: {fileID: -5788645865464980992}
+  - component: {fileID: 2581529127195885947}
   m_Layer: 0
   m_Name: LevelGoal
   m_TagString: Untagged
@@ -106,3 +107,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f29945383408adb429f0221662a6f2b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!122 &2581529127195885947
+Halo:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1421844774069818799}
+  m_Enabled: 1
+  m_Color:
+    serializedVersion: 2
+    rgba: 238565432
+  m_Size: 1.25
