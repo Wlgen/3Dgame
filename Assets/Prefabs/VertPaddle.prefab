@@ -89,7 +89,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8381959004891214299}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 43c8f8449ac2a7245a08fd7943c97e41, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -124,4 +124,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StartDirection: {x: 0, y: 1, z: 0}
-  ball: {fileID: 0}
