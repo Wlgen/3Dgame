@@ -16,7 +16,15 @@ public class BallCollisionUp : MonoBehaviour
     {
         if (other.CompareTag("Bounce"))
         {
-            parentBall._velocity = new Vector3(parentBall._velocity.x, -System.Math.Abs(parentBall._velocity.y), parentBall._velocity.z).normalized;
+            parentBall.setCollisionUp(true);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Bounce"))
+        {
+            parentBall.setCollisionUp(false);
         }
     }
 }
