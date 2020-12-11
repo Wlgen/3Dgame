@@ -7,6 +7,7 @@ public class RespawnPoint : MonoBehaviour
     public Vector3 restartingVelocity = new Vector3(-1, -1, 0);
     public int restartingCamera;
     public GameObject ball;
+    public GameObject _C;
     Ball ballScript;
     bool green = false;
     void Start()
@@ -22,8 +23,8 @@ public class RespawnPoint : MonoBehaviour
             ballScript.restartingPositon = gameObject.transform.position;
             ballScript.restartingCamera = restartingCamera;
             green = true;
-            GetComponent<Renderer>().material.SetColor("_Color", Color.green);
-            GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.green);
+            _C.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
+            _C.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.green);
         }
     }
 }
