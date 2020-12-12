@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8904940385298928894}
   - component: {fileID: 4766044810844586888}
   - component: {fileID: 6022108500652521269}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: CollisionUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 2966166053787971570}
   - component: {fileID: 3137876185188832118}
   - component: {fileID: 5794029158822401449}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Ball
   m_TagString: Ball
   m_Icon: {fileID: 0}
@@ -5026,7 +5026,7 @@ GameObject:
   - component: {fileID: 2070729411358800425}
   - component: {fileID: 4896185921222176863}
   - component: {fileID: 3637124042686784822}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: CollisionRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5084,7 +5084,7 @@ GameObject:
   - component: {fileID: 7623262391374952406}
   - component: {fileID: 9162472138298595126}
   - component: {fileID: 4093172947255557708}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: CollisionDown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5142,7 +5142,7 @@ GameObject:
   - component: {fileID: 4827950423437442451}
   - component: {fileID: 5244347891699558001}
   - component: {fileID: 8842710060890814567}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: CollisionLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}

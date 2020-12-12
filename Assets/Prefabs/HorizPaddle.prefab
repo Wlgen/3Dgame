@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1194507456699111692}
   - component: {fileID: 3732513764642695742}
   - component: {fileID: 2816141517003122989}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: ColorPaddle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 74245480622697249}
   - component: {fileID: 5326676803184490934}
   - component: {fileID: 513363199211442306}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: HorizPaddle
   m_TagString: Bounce
   m_Icon: {fileID: 0}
