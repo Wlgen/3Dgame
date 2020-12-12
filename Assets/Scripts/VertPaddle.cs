@@ -31,25 +31,28 @@ public class VertPaddle : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (prePosition == transform.position)
+        if (ball != null)
         {
-            velocity = -velocity;
-        }
-        if (System.Math.Abs(ball.transform.position.x - transform.position.x) > 3)
-        {
-            _rigidbody.velocity = velocity;
-        }
-        else
-        {
-            if (System.Math.Abs(ball.transform.position.y - transform.position.y) < 10)
+            if (prePosition == transform.position)
             {
-                _rigidbody.velocity = new Vector3(0, ball.transform.position.y - transform.position.y, 0);
-                if (_rigidbody.velocity.magnitude > 1)
+                velocity = -velocity;
+            }
+            if (System.Math.Abs(ball.transform.position.x - transform.position.x) > 3)
+            {
+                _rigidbody.velocity = velocity;
+            }
+            else
+            {
+                if (System.Math.Abs(ball.transform.position.y - transform.position.y) < 10)
                 {
-                    _rigidbody.velocity = _rigidbody.velocity.normalized * speedchase;
+                    _rigidbody.velocity = new Vector3(0, ball.transform.position.y - transform.position.y, 0);
+                    if (_rigidbody.velocity.magnitude > 1)
+                    {
+                        _rigidbody.velocity = _rigidbody.velocity.normalized * speedchase;
+                    }
                 }
             }
+            prePosition = transform.position;
         }
-        prePosition = transform.position;
     }
 }
