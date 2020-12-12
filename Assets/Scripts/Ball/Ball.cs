@@ -8,18 +8,22 @@ public class Ball : MonoBehaviour
     public Vector3 restartingPositon;
     public int restartingCamera = 0;
     public GameObject LevelCamera;
+    public GameObject trailCollider;
+    bool isTailed;
     LevelCamera lvlCam;
     float _speedBall;
     Rigidbody _rigidBody;
     public Vector3 _velocity;
     bool inCollision;
     ParticleSystem _particles;
-    bool collidingLeft, collidingRight, collidingUp, collidingDown, isTailed;
+    bool collidingLeft, collidingRight, collidingUp, collidingDown, bounceOnTrailDoor;
+    List<GameObject> trailColliders;
 
     public GameObject[] _wheels;
 
     void Start()
     {
+        trailColliders = new List<GameObject>();
         lvlCam = LevelCamera.GetComponent<LevelCamera>();
         inCollision = false;
         _speedBall = 12f;
@@ -28,6 +32,7 @@ public class Ball : MonoBehaviour
         _rigidBody.velocity = _velocity;
         _particles = GetComponent<ParticleSystem>();
         isTailed = collidingLeft = collidingRight = collidingDown = collidingUp = false;
+        bounceOnTrailDoor = true;
     }
 
     void Update()
@@ -43,6 +48,10 @@ public class Ball : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (isTailed)
+        {
+            instantiateTrailCollider();
+        }
         if (collidingRight)
         {
             _velocity = new Vector3(-System.Math.Abs(_velocity.x), _velocity.y, _velocity.z).normalized;
@@ -60,12 +69,13 @@ public class Ball : MonoBehaviour
     }
 
     private void OnCollisionEnter(Collision collision)
-    {
+    { 
         if (collision.gameObject.CompareTag("Death"))
         {
             _rigidBody.transform.position = restartingPositon;
             _velocity = restartingVelocity.normalized;
             lvlCam.setActualCamera(restartingCamera);
+            destroyTrail();
         }
         inCollision = true;
     }
@@ -106,5 +116,36 @@ public class Ball : MonoBehaviour
     public void setCollisionDown(bool a)
     {
         collidingDown = a;
+    }
+
+    void instantiateTrailCollider()
+    {
+        Vector3 newPosition = transform.position - _velocity.normalized * 1.1f;
+        trailColliders.Add(Instantiate(trailCollider, newPosition, Quaternion.identity));
+    }
+    public void addTail()
+    {
+        isTailed = true;
+        GetComponent<TrailRenderer>().enabled = true;
+    }
+    public void destroyTrail()
+    {
+        Debug.Log("Destroying " + trailColliders.Count + " colliders");
+        isTailed = false;
+        GetComponent<TrailRenderer>().enabled = false;
+        GetComponent<TrailRenderer>().Clear();
+        for (int i = 0; i < trailColliders.Count; ++i)
+        {
+            Destroy(trailColliders[i]);
+        }
+        while (trailColliders.Count > 0)
+        {
+            trailColliders.RemoveAt(0);
+        }
+    }
+
+    public bool itIsTailed()
+    {
+        return isTailed;
     }
 }
