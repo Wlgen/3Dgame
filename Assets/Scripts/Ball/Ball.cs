@@ -14,7 +14,7 @@ public class Ball : MonoBehaviour
     public Vector3 _velocity;
     bool inCollision;
     ParticleSystem _particles;
-    bool collidingLeft, collidingRight, collidingUp, collidingDown;
+    bool collidingLeft, collidingRight, collidingUp, collidingDown, isTailed;
 
     public GameObject[] _wheels;
 
@@ -27,7 +27,7 @@ public class Ball : MonoBehaviour
         _velocity = new Vector3(1f, 1f, 0f).normalized * _speedBall;
         _rigidBody.velocity = _velocity;
         _particles = GetComponent<ParticleSystem>();
-        collidingLeft = collidingRight = collidingDown = collidingUp = false;
+        isTailed = collidingLeft = collidingRight = collidingDown = collidingUp = false;
     }
 
     void Update()
@@ -45,19 +45,15 @@ public class Ball : MonoBehaviour
     {
         if (collidingRight)
         {
-            Debug.Log("Collision Right");
             _velocity = new Vector3(-System.Math.Abs(_velocity.x), _velocity.y, _velocity.z).normalized;
         } else if (collidingLeft)
         {
-            Debug.Log("Collision left");
             _velocity = new Vector3(System.Math.Abs(_velocity.x), _velocity.y, _velocity.z).normalized;
         } else if (collidingUp)
         {
-            Debug.Log("Collision Up");
             _velocity = new Vector3(_velocity.x, -System.Math.Abs(_velocity.y), _velocity.z).normalized;
         } else if (collidingDown)
         {
-            Debug.Log("Collision Down");
             _velocity = new Vector3(_velocity.x, System.Math.Abs(_velocity.y), _velocity.z).normalized;
         }
         _rigidBody.velocity = _velocity.normalized * _speedBall;
