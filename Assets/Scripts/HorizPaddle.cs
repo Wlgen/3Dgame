@@ -31,25 +31,27 @@ public class HorizPaddle : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (prePosition == transform.position)
-        {
-            velocity = -velocity;
-        }
-        if (System.Math.Abs(ball.transform.position.y - transform.position.y) > 3)
-        {
-            _rigidbody.velocity = velocity;
-        }
-        else
-        {
-            if (System.Math.Abs(ball.transform.position.x - transform.position.x) < 10)
+        if (ball!= null) { 
+            if (prePosition == transform.position)
             {
-                _rigidbody.velocity = new Vector3(ball.transform.position.x - transform.position.x, 0, 0);
-                if (_rigidbody.velocity.magnitude > 1)
+                velocity = -velocity;
+            }
+            if (System.Math.Abs(ball.transform.position.y - transform.position.y) > 3)
+            {
+                _rigidbody.velocity = velocity;
+            }
+            else
+            {
+                if (System.Math.Abs(ball.transform.position.x - transform.position.x) < 10)
                 {
-                    _rigidbody.velocity = _rigidbody.velocity.normalized * speedchase;
+                    _rigidbody.velocity = new Vector3(ball.transform.position.x - transform.position.x, 0, 0);
+                    if (_rigidbody.velocity.magnitude > 1)
+                    {
+                        _rigidbody.velocity = _rigidbody.velocity.normalized * speedchase;
+                    }
                 }
             }
+            prePosition = transform.position;
         }
-        prePosition = transform.position;
     }
 }
