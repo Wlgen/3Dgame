@@ -12,9 +12,9 @@ public class BallCollisionLeft : MonoBehaviour
         parentBall = parent.GetComponent<Ball>();
     }
 
-    private void OnTriggerEnter(Collider collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.CompareTag("Bounce"))
+        if (other.CompareTag("Bounce") || (other.CompareTag("Death") && parentBall.isGod()))
         {
             parentBall.setCollisionLeft(true);
             parentBall.changeDirectionWheel();
@@ -23,7 +23,7 @@ public class BallCollisionLeft : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Bounce"))
+        if (other.CompareTag("Bounce") || (other.CompareTag("Death") && parentBall.isGod()))
         {
             parentBall.setCollisionLeft(false);
         }

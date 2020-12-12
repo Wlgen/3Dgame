@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 287969834854357079}
   - component: {fileID: 3285160198074491234}
   - component: {fileID: 2797448232781334415}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: ColorPaddle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 74245480622697249}
   - component: {fileID: 5326676803184490934}
   - component: {fileID: -5584929799616000212}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: VertPaddle
   m_TagString: Bounce
   m_Icon: {fileID: 0}

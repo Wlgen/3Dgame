@@ -16,7 +16,7 @@ public class Ball : MonoBehaviour
     public Vector3 _velocity;
     bool inCollision;
     ParticleSystem _particles;
-    bool collidingLeft, collidingRight, collidingUp, collidingDown, bounceOnTrailDoor;
+    bool collidingLeft, collidingRight, collidingUp, collidingDown, bounceOnTrailDoor, god;
     List<GameObject> trailColliders;
 
     public GameObject[] _wheels;
@@ -31,7 +31,7 @@ public class Ball : MonoBehaviour
         _velocity = new Vector3(1f, 1f, 0f).normalized * _speedBall;
         _rigidBody.velocity = _velocity;
         _particles = GetComponent<ParticleSystem>();
-        isTailed = collidingLeft = collidingRight = collidingDown = collidingUp = false;
+        god = isTailed = collidingLeft = collidingRight = collidingDown = collidingUp = false;
         bounceOnTrailDoor = true;
     }
 
@@ -43,6 +43,27 @@ public class Ball : MonoBehaviour
             _rigidBody.velocity = _velocity;
             _particles.Play();
             Invoke("StopParticles", 0.1f);
+        }
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            if (gameObject.layer == 0)
+            {
+                god = true;
+                gameObject.layer = 10;
+                for (int i = 0; i < gameObject.transform.childCount; ++i)
+                {
+                    gameObject.transform.GetChild(i).gameObject.layer = 10;
+                }
+            }
+            else
+            {
+                god = false;
+                gameObject.layer = 0;
+                for (int i = 0; i < gameObject.transform.childCount; ++i)
+                {
+                    gameObject.transform.GetChild(i).gameObject.layer = 0;
+                }
+            }
         }
     }
 
@@ -70,7 +91,7 @@ public class Ball : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     { 
-        if (collision.gameObject.CompareTag("Death"))
+        if (collision.gameObject.CompareTag("Death") && !god)
         {
             _rigidBody.transform.position = restartingPositon;
             _velocity = restartingVelocity.normalized;
@@ -147,5 +168,10 @@ public class Ball : MonoBehaviour
     public bool itIsTailed()
     {
         return isTailed;
+    }
+
+    public bool isGod()
+    {
+        return god;
     }
 }
