@@ -14,7 +14,7 @@ public class BallCollisionUp : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Bounce"))
+        if (other.CompareTag("Bounce") || (other.CompareTag("Death") && parentBall.isGod()))
         {
             parentBall.setCollisionUp(true);
         }
@@ -22,7 +22,7 @@ public class BallCollisionUp : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Bounce"))
+        if (other.CompareTag("Bounce") || (other.CompareTag("Death") && parentBall.isGod()))
         {
             parentBall.setCollisionUp(false);
         }

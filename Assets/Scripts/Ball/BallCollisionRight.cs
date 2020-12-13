@@ -12,18 +12,18 @@ public class BallCollisionRight : MonoBehaviour
         parentBall = parent.GetComponent<Ball>();
     }
 
-    private void OnTriggerEnter(Collider collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.CompareTag("Bounce"))
+        if (other.CompareTag("Bounce") || (other.CompareTag("Death") && parentBall.isGod()))
         {
             parentBall.setCollisionRight(true);
             parentBall.changeDirectionWheel();
         }
     }
 
-    private void OnTriggerExit(Collider collision)
+    private void OnTriggerExit(Collider other)
     {
-        if (collision.CompareTag("Bounce"))
+        if (other.CompareTag("Bounce") || (other.CompareTag("Death") && parentBall.isGod()))
         {
             parentBall.setCollisionRight(false);
         }
