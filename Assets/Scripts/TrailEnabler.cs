@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TrailEnabler : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerExit(Collider other)
     {
         GameObject.Find("Ball").GetComponent<Ball>().addTail();
     }

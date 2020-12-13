@@ -59,7 +59,8 @@ public class Ball : MonoBehaviour
             {
                 _velocity = new Vector3(_velocity.x, -_velocity.y, _velocity.z);
                 _rigidBody.velocity = _velocity;
-                _particles.Play();
+                if (!isTailed)
+                    _particles.Play();
                 GameSounds.Instance.playBallChangeDirection();
                 Invoke("StopParticles", 0.1f);
             }
@@ -114,8 +115,10 @@ public class Ball : MonoBehaviour
         if (collision.gameObject.CompareTag("Death") && !god)
         {
             deathBall();
+            inCollision = false;
         }
-        inCollision = true;
+        else
+            inCollision = true;
     }
 
     private void OnCollisionExit(Collision collision)
