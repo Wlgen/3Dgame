@@ -5,25 +5,29 @@ using UnityEngine;
 public class BallCollisionUp : MonoBehaviour
 {
     public GameObject parent;
+    public GameObject ballRenderer;
+    Animator ballAnimator;
     Ball parentBall;
 
     void Start()
     {
         parentBall = parent.GetComponent<Ball>();
+        ballAnimator = ballRenderer.GetComponent<Animator>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Bounce") || (other.CompareTag("Death") && parentBall.isGod()))
+        if (other.CompareTag("Bounce") || (other.CompareTag("Death") && parentBall.isGod()) || (other.CompareTag("Trail Door") && !parentBall.itIsTailed()))
         {
             GameSounds.Instance.playBallImapctWall();
             parentBall.setCollisionUp(true);
+            ballAnimator.SetTrigger("CollisionUp");
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Bounce") || (other.CompareTag("Death") && parentBall.isGod()))
+        if (other.CompareTag("Bounce") || (other.CompareTag("Death") && parentBall.isGod()) || (other.CompareTag("Trail Door") && !parentBall.itIsTailed()))
         {
             parentBall.setCollisionUp(false);
         }

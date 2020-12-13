@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TrailDoor : MonoBehaviour
 {
-    private void OnCollisionExit(Collision collision)
+    private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ball"))
         {
