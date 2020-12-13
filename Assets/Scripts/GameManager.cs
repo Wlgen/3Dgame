@@ -131,6 +131,7 @@ public class GameManager : MonoBehaviour
                 }
                 break;
             case State.GAMEOVER:
+                GameSounds.Instance.playEndGameTheme();
                 panelGameOver.SetActive(true);
                 SwitchState(State.CREDITS, 2.5f);
                 break;
