@@ -19,7 +19,7 @@ public class LevelGoal : MonoBehaviour
             Destroy(GameObject.FindGameObjectWithTag("Ball"));
             _audioSource.Play();
             _confetti.Play();
-            Invoke("changeLevel", 4f);
+            Invoke("changeLevel", 3.6f);
         }
     }
 
