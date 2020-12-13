@@ -11,12 +11,12 @@ public class Ball : MonoBehaviour
     public GameObject trailCollider;
     bool isTailed;
     LevelCamera lvlCam;
-    float _speedBall;
+    float _speedBall, time;
     Rigidbody _rigidBody;
     public Vector3 _velocity;
     bool inCollision;
     ParticleSystem _particles;
-    bool collidingLeft, collidingRight, collidingUp, collidingDown, bounceOnTrailDoor, god;
+    bool collidingLeft, collidingRight, collidingUp, collidingDown, bounceOnTrailDoor, god, reduceSize;
     List<GameObject> trailColliders;
 
     public GameObject[] _wheels;
@@ -31,38 +31,57 @@ public class Ball : MonoBehaviour
         _velocity = new Vector3(1f, 1f, 0f).normalized * _speedBall;
         _rigidBody.velocity = _velocity;
         _particles = GetComponent<ParticleSystem>();
-        god = isTailed = collidingLeft = collidingRight = collidingDown = collidingUp = false;
+        reduceSize = god = isTailed = collidingLeft = collidingRight = collidingDown = collidingUp = false;
         bounceOnTrailDoor = true;
+        time = 0f;
     }
 
     void Update()
     {
-        if (!inCollision && Input.GetKeyDown(KeyCode.Space))
+        if (reduceSize)
         {
-            _velocity = new Vector3(_velocity.x, -_velocity.y, _velocity.z);
-            _rigidBody.velocity = _velocity;
-            _particles.Play();
-            GameSounds.Instance.playBallChangeDirection();
-            Invoke("StopParticles", 0.1f);
-        }
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            if (gameObject.layer == 0)
+            time += Time.deltaTime;
+            if (transform.localScale.x > 0f && time >= 0.05f)
             {
-                god = true;
-                gameObject.layer = 10;
-                for (int i = 0; i < gameObject.transform.childCount; ++i)
-                {
-                    gameObject.transform.GetChild(i).gameObject.layer = 10;
-                }
+                float reduce = 1f / 22f;
+                transform.localScale -= new Vector3(reduce, reduce, reduce);
+                if (transform.localScale.x < 0f) transform.localScale = new Vector3(0f, 0f, 0f);
+                time = 0f;
             }
-            else
+            else if (transform.localScale.x <= 0f)
             {
-                god = false;
-                gameObject.layer = 0;
-                for (int i = 0; i < gameObject.transform.childCount; ++i)
+                Invoke("resetPosition", 0.4f);
+            }
+        }
+        else
+        {
+            if (!inCollision && Input.GetKeyDown(KeyCode.Space))
+            {
+                _velocity = new Vector3(_velocity.x, -_velocity.y, _velocity.z);
+                _rigidBody.velocity = _velocity;
+                _particles.Play();
+                GameSounds.Instance.playBallChangeDirection();
+                Invoke("StopParticles", 0.1f);
+            }
+            if (Input.GetKeyDown(KeyCode.G))
+            {
+                if (gameObject.layer == 0)
                 {
-                    gameObject.transform.GetChild(i).gameObject.layer = 0;
+                    god = true;
+                    gameObject.layer = 10;
+                    for (int i = 0; i < gameObject.transform.childCount; ++i)
+                    {
+                        gameObject.transform.GetChild(i).gameObject.layer = 10;
+                    }
+                }
+                else
+                {
+                    god = false;
+                    gameObject.layer = 0;
+                    for (int i = 0; i < gameObject.transform.childCount; ++i)
+                    {
+                        gameObject.transform.GetChild(i).gameObject.layer = 0;
+                    }
                 }
             }
         }
@@ -94,10 +113,7 @@ public class Ball : MonoBehaviour
     { 
         if (collision.gameObject.CompareTag("Death") && !god)
         {
-            _rigidBody.transform.position = restartingPositon;
-            _velocity = restartingVelocity.normalized;
-            lvlCam.setActualCamera(restartingCamera);
-            destroyTrail();
+            deathBall();
         }
         inCollision = true;
     }
@@ -152,7 +168,6 @@ public class Ball : MonoBehaviour
     }
     public void destroyTrail()
     {
-        Debug.Log("Destroying " + trailColliders.Count + " colliders");
         isTailed = false;
         GetComponent<TrailRenderer>().enabled = false;
         GetComponent<TrailRenderer>().Clear();
@@ -174,5 +189,22 @@ public class Ball : MonoBehaviour
     public bool isGod()
     {
         return god;
+    }
+
+    private void deathBall()
+    {
+        destroyTrail();
+        GameSounds.Instance.playDeathSound();
+        _velocity = new Vector3(0f, 0f, 0f);
+
+        reduceSize = true; 
+    }
+    private void resetPosition()
+    {
+        reduceSize = false;
+        _rigidBody.transform.localScale = new Vector3(1f, 1f, 1f);
+        _rigidBody.transform.position = restartingPositon;
+        _velocity = restartingVelocity.normalized;
+        lvlCam.setActualCamera(restartingCamera);
     }
 }

@@ -9,6 +9,7 @@ public class GameSounds : MonoBehaviour
     public AudioSource _titleTheme;
     public AudioSource _ballChangeDirection;
     public AudioSource _wallImpactWall;
+    public AudioSource _deathSound;
 
     AudioSource _currentAudio;
     public static GameSounds Instance { get; private set; }
@@ -45,5 +46,10 @@ public class GameSounds : MonoBehaviour
 
     public void playBallImapctWall() {
         _wallImpactWall.Play();
+    }
+
+    public void playDeathSound()
+    {
+        _deathSound.Play();
     }
 }
