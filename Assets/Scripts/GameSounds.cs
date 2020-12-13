@@ -11,6 +11,9 @@ public class GameSounds : MonoBehaviour
     public AudioSource _wallImpactWall;
     public AudioSource _deathSound;
     public AudioSource _endGameTheme;
+    public AudioSource _trialOpenSound;
+    public AudioSource _trialChangeDirection;
+    public AudioSource _trialClosed;
 
     AudioSource _currentAudio;
     public static GameSounds Instance { get; private set; }
@@ -62,5 +65,18 @@ public class GameSounds : MonoBehaviour
     public void playDeathSound()
     {
         _deathSound.Play();
+    }
+
+    public void playTrialOpenSound()
+    {
+        _trialOpenSound.Play();
+    }
+    public void playTrialChangeDirection()
+    {
+        _trialChangeDirection.Play();
+    }
+    public void playTrialClosed()
+    {
+        _trialClosed.Play();
     }
 }

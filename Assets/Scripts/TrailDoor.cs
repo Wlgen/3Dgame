@@ -10,6 +10,7 @@ public class TrailDoor : MonoBehaviour
         {
             if (collision.gameObject.GetComponent<Ball>().itIsTailed())
             {
+                GameSounds.Instance.playTrialClosed();
                 Destroy(gameObject);
                 collision.gameObject.GetComponent<Ball>().destroyTrail();
             }
