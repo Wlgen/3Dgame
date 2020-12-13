@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 9026903818114476881}
   m_Layer: 0
   m_Name: TrailDoor
-  m_TagString: Bounce
+  m_TagString: Trail Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
