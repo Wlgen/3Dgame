@@ -11,6 +11,7 @@ public class LevelCamera : MonoBehaviour
     void Update()
     {
         transform.position = Vector3.Lerp(transform.position, cameraPositions[actualPosition], Time.deltaTime * speed);
+        Debug.Log(transform.position);
     }
 
     public void setActualCamera(int cam)
