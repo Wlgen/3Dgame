@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour
             case State.MENU:
                 Cursor.visible = true;
                 panelMenu.SetActive(true);
-                GameSounds.Instance.setTitleTheme();
+                GameSounds.Instance.playTitleTheme();
                 break;
             case State.INST:
                 panelInstructions.SetActive(true);
@@ -106,7 +106,7 @@ public class GameManager : MonoBehaviour
                 break;
             case State.PLAY:
                 panelPlay.SetActive(true);
-                GameSounds.Instance.setMainTheme();
+                GameSounds.Instance.playMainTheme();
                 break;
             case State.LEVELCOMPLETED:
                 Destroy(_currentLevel);
@@ -131,6 +131,7 @@ public class GameManager : MonoBehaviour
                 }
                 break;
             case State.GAMEOVER:
+                GameSounds.Instance.playEndGameTheme();
                 panelGameOver.SetActive(true);
                 SwitchState(State.CREDITS, 2.5f);
                 break;

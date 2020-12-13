@@ -7,6 +7,10 @@ public class GameSounds : MonoBehaviour
 
     public AudioSource _mainTheme;
     public AudioSource _titleTheme;
+    public AudioSource _ballChangeDirection;
+    public AudioSource _wallImpactWall;
+    public AudioSource _deathSound;
+    public AudioSource _endGameTheme;
 
     AudioSource _currentAudio;
     public static GameSounds Instance { get; private set; }
@@ -16,7 +20,7 @@ public class GameSounds : MonoBehaviour
         _currentAudio = _titleTheme;
         _currentAudio.Play();
     }
-    public void setMainTheme()
+    public void playMainTheme()
     {
         if(_currentAudio != _mainTheme)
         {
@@ -26,7 +30,7 @@ public class GameSounds : MonoBehaviour
         }
     }
 
-    public void setTitleTheme()
+    public void playTitleTheme()
     {
         if (_currentAudio != _titleTheme)
         {
@@ -35,9 +39,28 @@ public class GameSounds : MonoBehaviour
             _currentAudio.Play();
         }
     }
-    // Update is called once per frame
-    void Update()
+
+    public void playEndGameTheme()
     {
-        
+        if (_currentAudio != _endGameTheme)
+        {
+            _currentAudio.Stop();
+            _currentAudio = _endGameTheme;
+            _currentAudio.Play();
+        }
+    }
+
+    public void playBallChangeDirection()
+    {
+        _ballChangeDirection.Play();
+    }
+
+    public void playBallImapctWall() {
+        _wallImpactWall.Play();
+    }
+
+    public void playDeathSound()
+    {
+        _deathSound.Play();
     }
 }

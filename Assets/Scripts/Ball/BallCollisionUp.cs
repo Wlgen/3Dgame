@@ -16,6 +16,7 @@ public class BallCollisionUp : MonoBehaviour
     {
         if (other.CompareTag("Bounce") || (other.CompareTag("Death") && parentBall.isGod()))
         {
+            GameSounds.Instance.playBallImapctWall();
             parentBall.setCollisionUp(true);
         }
     }
