@@ -1455,7 +1455,8 @@ PrefabInstance:
       propertyPath: cameraPositions.Array.data[7].z
       value: -11
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3204761206531959216, guid: 11f0128e53510424a8027e55194b1a84, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 11f0128e53510424a8027e55194b1a84, type: 3}
 --- !u!1 &5761909097456919668 stripped
 GameObject:

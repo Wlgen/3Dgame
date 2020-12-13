@@ -11,9 +11,11 @@ public class RespawnPoint : MonoBehaviour
     public GameObject C;
     Ball ballScript;
     bool green = false;
+    AudioSource _audioSource;
     void Start()
     {
         ballScript = ball.GetComponent<Ball>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -25,6 +27,7 @@ public class RespawnPoint : MonoBehaviour
             ballScript.restartingCamera = restartingCamera;
             green = true;
             C.GetComponent<Renderer>().material = greenCheckpoint;
+            _audioSource.Play();
         }
     }
 }
