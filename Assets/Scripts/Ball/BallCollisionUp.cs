@@ -20,6 +20,7 @@ public class BallCollisionUp : MonoBehaviour
         if (other.CompareTag("Bounce") || (other.CompareTag("Death") && parentBall.isGod()) || (other.CompareTag("Trail Door") && !parentBall.itIsTailed()))
         {
             GameSounds.Instance.playBallImapctWall();
+            if (parentBall.itIsTailed()) GameSounds.Instance.playTrialChangeDirection();
             parentBall.setCollisionUp(true);
             ballAnimator.SetTrigger("CollisionUp");
         }

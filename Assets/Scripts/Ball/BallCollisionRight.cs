@@ -20,6 +20,7 @@ public class BallCollisionRight : MonoBehaviour
         if (other.CompareTag("Bounce") || (other.CompareTag("Death") && parentBall.isGod()) || (other.CompareTag("Trail Door") && !parentBall.itIsTailed()))
         {
             GameSounds.Instance.playBallImapctWall();
+            if (parentBall.itIsTailed()) GameSounds.Instance.playTrialChangeDirection();
             parentBall.setCollisionRight(true);
             parentBall.changeDirectionWheel();
             ballAnimator.SetTrigger("CollisionRight");
