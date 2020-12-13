@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 870782506349276441}
   - component: {fileID: -2873112752000646355}
   - component: {fileID: 7196812461435519651}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WheelSpike
   m_TagString: Death
   m_Icon: {fileID: 0}
@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StartDirection: {x: -1, y: 0, z: 0}
-  speed: 0
+  speed: 3
 --- !u!65 &7196812461435519651
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 8951547646644514223}
   - component: {fileID: 2721593384976190167}
   - component: {fileID: 8430508461885062928}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: wheel2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

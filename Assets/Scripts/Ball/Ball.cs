@@ -116,14 +116,17 @@ public class Ball : MonoBehaviour
     }
 
     private void OnCollisionEnter(Collision collision)
-    { 
-        if (collision.gameObject.CompareTag("Death") && !god)
+    {
+        if (!reduceSize)
         {
-            deathBall();
-            inCollision = false;
+            if (collision.gameObject.CompareTag("Death") && !god)
+            {
+                deathBall();
+                inCollision = false;
+            }
+            else
+                inCollision = true;
         }
-        else
-            inCollision = true;
     }
 
     private void OnCollisionExit(Collision collision)
