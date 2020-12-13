@@ -16,7 +16,7 @@ public class Ball : MonoBehaviour
     public Vector3 _velocity;
     bool inCollision;
     ParticleSystem _particles;
-    bool collidingLeft, collidingRight, collidingUp, collidingDown, bounceOnTrailDoor, god, reduceSize;
+    bool collidingLeft, collidingRight, collidingUp, collidingDown, god, reduceSize;
     List<GameObject> trailColliders;
 
     public GameObject[] _wheels;
@@ -32,7 +32,6 @@ public class Ball : MonoBehaviour
         _rigidBody.velocity = _velocity;
         _particles = GetComponent<ParticleSystem>();
         reduceSize = god = isTailed = collidingLeft = collidingRight = collidingDown = collidingUp = false;
-        bounceOnTrailDoor = true;
         time = 0f;
     }
 
@@ -60,9 +59,15 @@ public class Ball : MonoBehaviour
                 _velocity = new Vector3(_velocity.x, -_velocity.y, _velocity.z);
                 _rigidBody.velocity = _velocity;
                 if (!isTailed)
+                {
                     _particles.Play();
-                GameSounds.Instance.playBallChangeDirection();
-                Invoke("StopParticles", 0.1f);
+                    GameSounds.Instance.playBallChangeDirection();
+                    Invoke("StopParticles", 0.1f);
+                }
+                else
+                {
+                    GameSounds.Instance.playTrialChangeDirection();
+                }
             }
             if (Input.GetKeyDown(KeyCode.G))
             {
@@ -167,6 +172,7 @@ public class Ball : MonoBehaviour
     public void addTail()
     {
         isTailed = true;
+        GameSounds.Instance.playTrialOpenSound();
         GetComponent<TrailRenderer>().enabled = true;
     }
     public void destroyTrail()
