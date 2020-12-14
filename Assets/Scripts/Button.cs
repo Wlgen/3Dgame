@@ -32,6 +32,8 @@ public class Button : MonoBehaviour
         if (collision.gameObject.CompareTag("Ball"))
         {
             actualShape = (actualShape + 1) % 2;
+            if (actualShape == 1) GameSounds.Instance.playButtonOn();
+            else GameSounds.Instance.playButtonOff();
             _meshFilter.sharedMesh = meshes[actualShape];
             _boxCollider.size = colliderSizes[actualShape];
             for (int i = 0; i < firstObjects.Length; ++i)

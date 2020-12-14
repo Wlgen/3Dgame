@@ -15,6 +15,8 @@ public class GameSounds : MonoBehaviour
     public AudioSource _trialChangeDirection;
     public AudioSource _trialClosed;
     public AudioSource _clickButtonMenu;
+    public AudioSource _buttonOn;
+    public AudioSource _buttonOff;
 
     AudioSource _currentAudio;
     public static GameSounds Instance { get; private set; }
@@ -83,5 +85,13 @@ public class GameSounds : MonoBehaviour
     public void playClickButtonMenu()
     {
         _clickButtonMenu.Play();
+    }
+    public void playButtonOn()
+    {
+        _buttonOn.Play();
+    }
+    public void playButtonOff()
+    {
+        _buttonOff.Play();
     }
 }
