@@ -58,6 +58,11 @@ public class GameManager : MonoBehaviour
         SwitchState(State.CREDITS);
     }
 
+    public void ExitClicked()
+    {
+        Application.Quit();
+    }
+
     void Start()
     {
         Instance = this;
@@ -146,6 +151,10 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
         switch (_state)
         {
             case State.MENU:
