@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject panelMenu;
     public GameObject panelPlay;
+    public GameObject panelLevels;
     public GameObject panelLevelCompleted;
     public GameObject panelGameOver;
     public GameObject panelInstructions;
@@ -21,7 +22,7 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance { get; private set; }
 
-    public enum State { MENU, INST, CREDITS, INIT, PLAY, LEVELCOMPLETED, LOADLEVEL, GAMEOVER }
+    public enum State { MENU, LVLS, INST, CREDITS, INIT, PLAY, LEVELCOMPLETED, LOADLEVEL, GAMEOVER }
     State _state;
     GameObject _currentLevel;
     GameObject _menuScene;
@@ -36,7 +37,7 @@ public class GameManager : MonoBehaviour
         set
         {
             _level = value;
-            levelText.text = "LEVEL: " + _level;
+            levelText.text = "LEVEL: " + (_level+1);
         }
     }
 
@@ -53,6 +54,7 @@ public class GameManager : MonoBehaviour
 
     public void PlayClicked()
     {
+        Level = 0;
         GameSounds.Instance.playClickButtonMenu();
         SwitchState(State.INIT);
     }
@@ -61,6 +63,12 @@ public class GameManager : MonoBehaviour
     {
         GameSounds.Instance.playClickButtonMenu();
         SwitchState(State.MENU);
+    }
+
+    public void LevelsClicked()
+    {
+        GameSounds.Instance.playClickButtonMenu();
+        SwitchState(State.LVLS);
     }
 
     public void InstClicked()
@@ -73,6 +81,41 @@ public class GameManager : MonoBehaviour
     {
         GameSounds.Instance.playClickButtonMenu();
         SwitchState(State.CREDITS);
+    }
+
+    public void Level1Clicked()
+    {
+        Level = 0;
+        GameSounds.Instance.playClickButtonMenu();
+        SwitchState(State.INIT);
+    }
+
+    public void Level2Clicked()
+    {
+        Level = 1;
+        GameSounds.Instance.playClickButtonMenu();
+        SwitchState(State.INIT);
+    }
+
+    public void Level3Clicked()
+    {
+        Level = 2;
+        GameSounds.Instance.playClickButtonMenu();
+        SwitchState(State.INIT);
+    }
+
+    public void Level4Clicked()
+    {
+        Level = 3;
+        GameSounds.Instance.playClickButtonMenu();
+        SwitchState(State.INIT);
+    }
+
+    public void Level5Clicked()
+    {
+        Level = 4;
+        GameSounds.Instance.playClickButtonMenu();
+        SwitchState(State.INIT);
     }
 
     public void ExitClicked()
@@ -115,6 +158,9 @@ public class GameManager : MonoBehaviour
                 panelMenu.SetActive(true);
                 GameSounds.Instance.playTitleTheme();
                 break;
+            case State.LVLS:
+                panelLevels.SetActive(true);
+                break;
             case State.INST:
                 panelInstructions.SetActive(true);
                 break;
@@ -125,7 +171,6 @@ public class GameManager : MonoBehaviour
             case State.INIT:
                 Cursor.visible = false;
                 panelPlay.SetActive(true);
-                Level = 0;
                 if (_currentLevel != null)
                 {
                     Destroy(_currentLevel);
@@ -202,6 +247,9 @@ public class GameManager : MonoBehaviour
         {
             case State.MENU:
                 panelMenu.SetActive(false);
+                break;
+            case State.LVLS:
+                panelLevels.SetActive(false);
                 break;
             case State.INST:
                 panelInstructions.SetActive(false);
