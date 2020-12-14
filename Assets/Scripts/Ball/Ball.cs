@@ -49,6 +49,7 @@ public class Ball : MonoBehaviour
             }
             else if (transform.localScale.x <= 0f)
             {
+                //gameObject.layer = 0;
                 Invoke("resetPosition", 0.4f);
             }
         }
@@ -116,7 +117,7 @@ public class Ball : MonoBehaviour
     }
 
     private void OnCollisionEnter(Collision collision)
-    { 
+    {
         if (collision.gameObject.CompareTag("Death") && !god)
         {
             deathBall();
@@ -203,6 +204,7 @@ public class Ball : MonoBehaviour
     private void deathBall()
     {
         destroyTrail();
+        gameObject.layer = 10;
         GameSounds.Instance.playDeathSound();
         _velocity = new Vector3(0f, 0f, 0f);
 
@@ -215,5 +217,6 @@ public class Ball : MonoBehaviour
         _rigidBody.transform.position = restartingPositon;
         _velocity = restartingVelocity.normalized;
         lvlCam.setActualCamera(restartingCamera);
+        gameObject.layer = 0;
     }
 }

@@ -22,7 +22,7 @@ TagManager:
   - NoBallCollision
   - Ball
   - Enemy
-  - 
+  - NoCollision
   - 
   - 
   - 
