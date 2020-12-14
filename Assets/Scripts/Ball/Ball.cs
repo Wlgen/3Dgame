@@ -129,6 +129,7 @@ public class Ball : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Death") && !god)
         {
+            gameObject.layer = 13;
             deathBall();
             inCollision = false;
         }
