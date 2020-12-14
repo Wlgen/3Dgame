@@ -9,12 +9,11 @@ public class TrailEnabler : MonoBehaviour
     {
         if (!doorOpened)
         {
-            GameObject ball = GameObject.Find("Ball");
             if (other.CompareTag("Ball"))
             {
-                if (!ball.GetComponent<Ball>().itIsTailed())
+                if (!other.gameObject.GetComponent<Ball>().itIsTailed())
                 {
-                    ball.GetComponent<Ball>().addTail();
+                    other.gameObject.GetComponent<Ball>().addTail();
                 }
             }
         }
