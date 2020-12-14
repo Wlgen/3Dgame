@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public Text levelText;
+    public Text godModeText;
 
     public GameObject panelMenu;
     public GameObject panelPlay;
@@ -27,6 +28,7 @@ public class GameManager : MonoBehaviour
     //bool _isSwitchingState;
 
     private int _level;
+    private bool _godMode;
 
     public int Level
     {
@@ -35,6 +37,17 @@ public class GameManager : MonoBehaviour
         {
             _level = value;
             levelText.text = "LEVEL: " + _level;
+        }
+    }
+
+    public bool GodMode
+    {
+        get { return _godMode; }
+        set
+        {
+            _godMode = value;
+            if (_godMode) godModeText.text = "GODMODE: ON";
+            else godModeText.text = "GODMODE: OFF";
         }
     }
 
@@ -67,6 +80,7 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
         _menuScene = Instantiate(menuScene);
+        GodMode = false;
         SwitchState(State.MENU);
     }
 

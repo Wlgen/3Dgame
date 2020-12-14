@@ -75,6 +75,7 @@ public class Ball : MonoBehaviour
                 if (gameObject.layer == 0)
                 {
                     god = true;
+                    GameManager.Instance.GodMode = true;
                     gameObject.layer = 10;
                     for (int i = 0; i < gameObject.transform.childCount; ++i)
                     {
@@ -84,6 +85,7 @@ public class Ball : MonoBehaviour
                 else
                 {
                     god = false;
+                    GameManager.Instance.GodMode =  false;
                     gameObject.layer = 0;
                     for (int i = 0; i < gameObject.transform.childCount; ++i)
                     {
