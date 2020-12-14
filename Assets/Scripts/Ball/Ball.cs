@@ -213,8 +213,16 @@ public class Ball : MonoBehaviour
 
     private void deathBall()
     {
-        destroyTrail();
-        gameObject.layer = 10;
+        GetComponent<TrailRenderer>().enabled = false;
+        GetComponent<TrailRenderer>().Clear();
+        for (int i = 0; i < trailColliders.Count; ++i)
+        {
+            Destroy(trailColliders[i]);
+        }
+        while (trailColliders.Count > 0)
+        {
+            trailColliders.RemoveAt(0);
+        }
         GameSounds.Instance.playDeathSound();
         _velocity = new Vector3(0f, 0f, 0f);
 
@@ -222,6 +230,7 @@ public class Ball : MonoBehaviour
     }
     private void resetPosition()
     {
+        isTailed = false;
         reduceSize = false;
         _rigidBody.transform.localScale = new Vector3(1f, 1f, 1f);
         _rigidBody.transform.position = restartingPositon;
