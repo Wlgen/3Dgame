@@ -18,13 +18,11 @@ public class Ball : MonoBehaviour
     public Vector3 _velocity;
     bool inCollision;
     bool collidingLeft, collidingRight, collidingUp, collidingDown, god, reduceSize;
-    List<GameObject> trailColliders;
 
     public GameObject[] _wheels;
 
     void Start()
     {
-        trailColliders = new List<GameObject>();
         lvlCam = LevelCamera.GetComponent<LevelCamera>();
         inCollision = false;
         _speedBall = 12f;
@@ -96,7 +94,7 @@ public class Ball : MonoBehaviour
                     }
                 }
             }
-            if (Input.GetKeyDown(KeyCode.R))
+            if (Input.GetKeyDown(KeyCode.R) && !god)
             {
                 deathBall();
                 inCollision = false;
@@ -109,6 +107,14 @@ public class Ball : MonoBehaviour
         if (isTailed)
         {
             instantiateTrailCollider();
+        }
+        else
+        {
+            GameObject[] trailColliders = GameObject.FindGameObjectsWithTag("TrailCollider");
+            for (int i = 0; i < trailColliders.Length; ++i)
+            {
+                Destroy(trailColliders[i]);
+            }
         }
         if (collidingRight)
         {
@@ -130,7 +136,7 @@ public class Ball : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Death") && !god)
+        if ((collision.gameObject.CompareTag("Death") || collision.gameObject.CompareTag("TrailCollider")) && !god)
         {
             gameObject.layer = 13;
             deathBall();
@@ -181,7 +187,7 @@ public class Ball : MonoBehaviour
     void instantiateTrailCollider()
     {
         Vector3 newPosition = transform.position - _velocity.normalized * 1.1f;
-        trailColliders.Add(Instantiate(trailCollider, newPosition, Quaternion.identity));
+        Instantiate(trailCollider, newPosition, Quaternion.identity);
     }
     public void addTail()
     {
@@ -194,13 +200,10 @@ public class Ball : MonoBehaviour
         isTailed = false;
         GetComponent<TrailRenderer>().enabled = false;
         GetComponent<TrailRenderer>().Clear();
-        for (int i = 0; i < trailColliders.Count; ++i)
+        GameObject[] trailColliders = GameObject.FindGameObjectsWithTag("TrailCollider");
+        for (int i = 0; i < trailColliders.Length; ++i)
         {
             Destroy(trailColliders[i]);
-        }
-        while (trailColliders.Count > 0)
-        {
-            trailColliders.RemoveAt(0);
         }
     }
 
@@ -218,13 +221,10 @@ public class Ball : MonoBehaviour
     {
         GetComponent<TrailRenderer>().enabled = false;
         GetComponent<TrailRenderer>().Clear();
-        for (int i = 0; i < trailColliders.Count; ++i)
+        GameObject[] trailColliders = GameObject.FindGameObjectsWithTag("TrailCollider");
+        for (int i = 0; i < trailColliders.Length; ++i)
         {
             Destroy(trailColliders[i]);
-        }
-        while (trailColliders.Count > 0)
-        {
-            trailColliders.RemoveAt(0);
         }
         GameSounds.Instance.playDeathSound();
         _velocity = new Vector3(0f, 0f, 0f);
