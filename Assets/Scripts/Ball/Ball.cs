@@ -9,6 +9,7 @@ public class Ball : MonoBehaviour
     public int restartingCamera = 0;
     public GameObject LevelCamera;
     public GameObject trailCollider;
+    public ParticleSystem _deathParticles;
     bool isTailed;
     LevelCamera lvlCam;
     float _speedBall, time;
@@ -44,7 +45,10 @@ public class Ball : MonoBehaviour
             {
                 float reduce = 1f / 22f;
                 transform.localScale -= new Vector3(reduce, reduce, reduce);
-                if (transform.localScale.x < 0f) transform.localScale = new Vector3(0f, 0f, 0f);
+                if(transform.localScale.x <= 2*reduce && transform.localScale.x > reduce) _deathParticles.Play();
+                if (transform.localScale.x < 0f) {
+                    transform.localScale = new Vector3(0f, 0f, 0f);
+                }
                 time = 0f;
             }
             else if (transform.localScale.x <= 0f)
@@ -225,13 +229,13 @@ public class Ball : MonoBehaviour
         }
         GameSounds.Instance.playDeathSound();
         _velocity = new Vector3(0f, 0f, 0f);
-
         reduceSize = true; 
     }
     private void resetPosition()
     {
         isTailed = false;
         reduceSize = false;
+        _deathParticles.Stop();
         _rigidBody.transform.localScale = new Vector3(1f, 1f, 1f);
         _rigidBody.transform.position = restartingPositon;
         _velocity = restartingVelocity.normalized;
