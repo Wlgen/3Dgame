@@ -80,6 +80,5 @@ public class VertPaddle : MonoBehaviour
             }
             prePosition = transform.position;
         }
-        Debug.Log(velocity);
     }
 }
