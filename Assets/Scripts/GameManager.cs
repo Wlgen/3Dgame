@@ -53,26 +53,31 @@ public class GameManager : MonoBehaviour
 
     public void PlayClicked()
     {
+        GameSounds.Instance.playClickButtonMenu();
         SwitchState(State.INIT);
     }
 
     public void MenuClicked()
     {
+        GameSounds.Instance.playClickButtonMenu();
         SwitchState(State.MENU);
     }
 
     public void InstClicked()
     {
+        GameSounds.Instance.playClickButtonMenu();
         SwitchState(State.INST);
     }
 
     public void CreditsClicked()
     {
+        GameSounds.Instance.playClickButtonMenu();
         SwitchState(State.CREDITS);
     }
 
     public void ExitClicked()
     {
+        GameSounds.Instance.playClickButtonMenu();
         Application.Quit();
     }
 
