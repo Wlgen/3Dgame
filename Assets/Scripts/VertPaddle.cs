@@ -8,7 +8,8 @@ public class VertPaddle : MonoBehaviour
     private GameObject ball;
     private Rigidbody _rigidbody;
     private float speed, speedchase;
-    private Vector3 velocity, prePosition, prevVelocity;
+    private Vector3 prePosition, prevVelocity;
+    public Vector3 velocity;
 
     void Start()
     {
@@ -31,6 +32,15 @@ public class VertPaddle : MonoBehaviour
         if (collision.gameObject.CompareTag("Ball"))
         {
             prevVelocity = velocity;
+            velocity = Vector3.zero;
+            _rigidbody.velocity = velocity;
+        }
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ball"))
+        {
             velocity = Vector3.zero;
             _rigidbody.velocity = velocity;
         }
@@ -70,5 +80,6 @@ public class VertPaddle : MonoBehaviour
             }
             prePosition = transform.position;
         }
+        Debug.Log(velocity);
     }
 }
