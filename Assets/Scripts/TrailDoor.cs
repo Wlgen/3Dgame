@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TrailDoor : MonoBehaviour
 {
+    public GameObject trailEnabler;
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ball"))
@@ -13,6 +14,7 @@ public class TrailDoor : MonoBehaviour
                 GameSounds.Instance.playTrialClosed();
                 Destroy(gameObject);
                 collision.gameObject.GetComponent<Ball>().destroyTrail();
+                trailEnabler.GetComponent<TrailEnabler>().openDoor();
             }
         }
     }

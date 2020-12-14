@@ -149,6 +149,7 @@ public class GameManager : MonoBehaviour
                 SwitchState(State.LOADLEVEL, timeS);
                 break;
             case State.LOADLEVEL:
+                GodMode = false;
                 if (Level >= levels.Length)
                 {
                     SwitchState(State.GAMEOVER);

@@ -93,6 +93,11 @@ public class Ball : MonoBehaviour
                     }
                 }
             }
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                deathBall();
+                inCollision = false;
+            }
         }
     }
 
@@ -102,21 +107,20 @@ public class Ball : MonoBehaviour
         {
             instantiateTrailCollider();
         }
-        if (collidingUp)
-        {
-            _velocity = new Vector3(_velocity.x, -System.Math.Abs(_velocity.y), _velocity.z).normalized;
-        }
-        else if (collidingDown)
-        {
-            _velocity = new Vector3(_velocity.x, System.Math.Abs(_velocity.y), _velocity.z).normalized;
-        }
-        else if (collidingRight)
+        if (collidingRight)
         {
             _velocity = new Vector3(-System.Math.Abs(_velocity.x), _velocity.y, _velocity.z).normalized;
         }
-        else if (collidingLeft)
+        else if(collidingUp)
+        {
+            _velocity = new Vector3(_velocity.x, -System.Math.Abs(_velocity.y), _velocity.z).normalized;
+        } 
+        else  if (collidingLeft)
         {
             _velocity = new Vector3(System.Math.Abs(_velocity.x), _velocity.y, _velocity.z).normalized;
+        }else if (collidingDown)
+        {
+            _velocity = new Vector3(_velocity.x, System.Math.Abs(_velocity.y), _velocity.z).normalized;
         }
         _rigidBody.velocity = _velocity.normalized * _speedBall;
     }
@@ -125,6 +129,7 @@ public class Ball : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Death") && !god)
         {
+            gameObject.layer = 13;
             deathBall();
             inCollision = false;
         }
