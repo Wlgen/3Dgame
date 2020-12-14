@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4819434892833592804}
   - component: {fileID: 7577253600853093608}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: TrailCollider
   m_TagString: Death
   m_Icon: {fileID: 0}
