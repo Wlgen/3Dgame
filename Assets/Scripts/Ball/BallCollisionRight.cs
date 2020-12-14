@@ -26,12 +26,19 @@ public class BallCollisionRight : MonoBehaviour
             ballAnimator.SetTrigger("CollisionRight");
         }
     }
-
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Bounce") || (other.CompareTag("Death") && parentBall.isGod() && other.gameObject.layer != 8) || (other.CompareTag("Trail Door") && !parentBall.itIsTailed()))
         {
-            parentBall.setCollisionRight(false);
+            parentBall.setCollisionRight(true);
         }
     }
-}
+
+        /*private void OnTriggerExit(Collider other)
+        {
+            if (other.CompareTag("Bounce") || (other.CompareTag("Death") && parentBall.isGod() && other.gameObject.layer != 8) || (other.CompareTag("Trail Door") && !parentBall.itIsTailed()))
+            {
+                parentBall.setCollisionRight(false);
+            }
+        }*/
+    }
