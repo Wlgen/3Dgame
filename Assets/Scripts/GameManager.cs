@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public Text levelText;
+    public Text godModeText;
 
     public GameObject panelMenu;
     public GameObject panelPlay;
@@ -16,14 +17,18 @@ public class GameManager : MonoBehaviour
 
     public GameObject[] levels;
 
+    public GameObject menuScene;
+
     public static GameManager Instance { get; private set; }
 
     public enum State { MENU, INST, CREDITS, INIT, PLAY, LEVELCOMPLETED, LOADLEVEL, GAMEOVER }
     State _state;
     GameObject _currentLevel;
+    GameObject _menuScene;
     //bool _isSwitchingState;
 
     private int _level;
+    private bool _godMode;
 
     public int Level
     {
@@ -32,6 +37,17 @@ public class GameManager : MonoBehaviour
         {
             _level = value;
             levelText.text = "LEVEL: " + _level;
+        }
+    }
+
+    public bool GodMode
+    {
+        get { return _godMode; }
+        set
+        {
+            _godMode = value;
+            if (_godMode) godModeText.text = "GODMODE: ON";
+            else godModeText.text = "GODMODE: OFF";
         }
     }
 
@@ -55,9 +71,16 @@ public class GameManager : MonoBehaviour
         SwitchState(State.CREDITS);
     }
 
+    public void ExitClicked()
+    {
+        Application.Quit();
+    }
+
     void Start()
     {
         Instance = this;
+        _menuScene = Instantiate(menuScene);
+        GodMode = false;
         SwitchState(State.MENU);
     }
 
@@ -110,6 +133,7 @@ public class GameManager : MonoBehaviour
                 break;
             case State.LEVELCOMPLETED:
                 Destroy(_currentLevel);
+                _menuScene = Instantiate(menuScene);
                 Level++;
                 float timeS = 0f;
                 if (Level < levels.Length)
@@ -126,6 +150,7 @@ public class GameManager : MonoBehaviour
                 }
                 else
                 {
+                    Destroy(_menuScene);
                     _currentLevel = Instantiate(levels[Level]);
                     SwitchState(State.PLAY);
                 }
@@ -140,6 +165,10 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
         switch (_state)
         {
             case State.MENU:
