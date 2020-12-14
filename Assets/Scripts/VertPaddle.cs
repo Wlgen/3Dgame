@@ -8,13 +8,14 @@ public class VertPaddle : MonoBehaviour
     private GameObject ball;
     private Rigidbody _rigidbody;
     private float speed, speedchase;
-    private Vector3 velocity, prePosition;
+    private Vector3 velocity, prePosition, prevVelocity;
 
     void Start()
     {
         speed = 5f;
         speedchase = 2 * speed;
         velocity = StartDirection * speed;
+        prevVelocity = velocity;
         ball = GameObject.Find("Ball");
         _rigidbody = GetComponent<Rigidbody>();
         _rigidbody.velocity = velocity;
@@ -22,9 +23,24 @@ public class VertPaddle : MonoBehaviour
     }
 
     private void OnCollisionEnter(Collision collision) {
-        if (collision.gameObject.name != "Ball")
+        if (collision.gameObject.CompareTag("Bounce"))
         {
             velocity = -velocity;
+            _rigidbody.velocity = velocity;
+        }
+        if (collision.gameObject.CompareTag("Ball"))
+        {
+            prevVelocity = velocity;
+            velocity = Vector3.zero;
+            _rigidbody.velocity = velocity;
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ball"))
+        {
+            velocity = prevVelocity;
             _rigidbody.velocity = velocity;
         }
     }
