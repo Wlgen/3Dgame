@@ -10,13 +10,13 @@ public class Ball : MonoBehaviour
     public GameObject LevelCamera;
     public GameObject trailCollider;
     public ParticleSystem _deathParticles;
+    public ParticleSystem _changeDirectionParticles;
     bool isTailed;
     LevelCamera lvlCam;
     float _speedBall, time;
     Rigidbody _rigidBody;
     public Vector3 _velocity;
     bool inCollision;
-    ParticleSystem _particles;
     bool collidingLeft, collidingRight, collidingUp, collidingDown, god, reduceSize;
 
     public GameObject[] _wheels;
@@ -29,7 +29,6 @@ public class Ball : MonoBehaviour
         _rigidBody = GetComponent<Rigidbody>();
         _velocity = restartingVelocity * _speedBall;
         _rigidBody.velocity = _velocity;
-        _particles = GetComponent<ParticleSystem>();
         reduceSize = god = isTailed = collidingLeft = collidingRight = collidingDown = collidingUp = false;
         time = 0f;
     }
@@ -63,7 +62,7 @@ public class Ball : MonoBehaviour
                 _rigidBody.velocity = _velocity;
                 if (!isTailed)
                 {
-                    _particles.Play();
+                    _changeDirectionParticles.Play();
                     GameSounds.Instance.playBallChangeDirection();
                     Invoke("StopParticles", 0.1f);
                 }
@@ -155,7 +154,7 @@ public class Ball : MonoBehaviour
     public void setRestartingVelocity(Vector3 velocity) { _velocity = velocity; }
     private void StopParticles()
     {
-        _particles.Stop();
+        _changeDirectionParticles.Stop();
     }
 
     public void changeDirectionWheel() {
