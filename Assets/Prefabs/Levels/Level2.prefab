@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 7766886541816551627}
   - component: {fileID: 9196755119443098697}
   - component: {fileID: 6590487207610285079}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11565,7 +11565,7 @@ PrefabInstance:
     - target: {fileID: 8786215330204935895, guid: 86b9a770050b652458cbab1f2dd3f21c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -14
+      value: -7
       objectReference: {fileID: 0}
     - target: {fileID: 8786215330204935895, guid: 86b9a770050b652458cbab1f2dd3f21c,
         type: 3}
@@ -11575,7 +11575,7 @@ PrefabInstance:
     - target: {fileID: 8786215330204935895, guid: 86b9a770050b652458cbab1f2dd3f21c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8786215330204935895, guid: 86b9a770050b652458cbab1f2dd3f21c,
         type: 3}
