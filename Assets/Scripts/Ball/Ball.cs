@@ -121,17 +121,17 @@ public class Ball : MonoBehaviour
             _velocity = new Vector3(-System.Math.Abs(_velocity.x), _velocity.y, _velocity.z).normalized;
             collidingRight = false;
         }
-        if(collidingUp)
+        else if(collidingUp)
         {
             _velocity = new Vector3(_velocity.x, -System.Math.Abs(_velocity.y), _velocity.z).normalized;
             collidingUp = false;
         } 
-        if (collidingLeft)
+        else if (collidingLeft)
         {
             _velocity = new Vector3(System.Math.Abs(_velocity.x), _velocity.y, _velocity.z).normalized;
             collidingLeft = false;
         }
-        if (collidingDown)
+        else if (collidingDown)
         {
             _velocity = new Vector3(_velocity.x, System.Math.Abs(_velocity.y), _velocity.z).normalized;
             collidingDown = false;
