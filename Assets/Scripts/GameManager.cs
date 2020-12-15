@@ -148,6 +148,18 @@ public class GameManager : MonoBehaviour
        // _isSwitchingState = false;
     }
 
+    private void changeToMenu()
+    {
+        if(_currentLevel != null)
+        {
+            Destroy(_currentLevel);
+        }
+        if (_menuScene == null)
+        {
+            _menuScene = Instantiate(menuScene);
+        }
+        SwitchState(State.MENU);
+    }
 
     void BeginState(State newState)
     {
@@ -216,28 +228,13 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && _state == State.MENU)
         {
             Application.Quit();
         }
-        switch (_state)
+        else if(Input.GetKeyDown(KeyCode.Escape) && _state != State.MENU && _state != State.LEVELCOMPLETED && _state != State.GAMEOVER)
         {
-            case State.MENU:
-                break;
-            case State.INST:
-                break;
-            case State.CREDITS:
-                break;
-            case State.INIT:
-                break;
-            case State.PLAY:
-                break;
-            case State.LEVELCOMPLETED:
-                break;
-            case State.LOADLEVEL:
-                break;
-            case State.GAMEOVER:
-                break;
+            changeToMenu();
         }
     }
 
