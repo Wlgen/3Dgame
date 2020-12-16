@@ -26,7 +26,6 @@ public class GameManager : MonoBehaviour
     State _state;
     GameObject _currentLevel;
     GameObject _menuScene;
-    //bool _isSwitchingState;
 
     private int _level;
     private bool _godMode;
