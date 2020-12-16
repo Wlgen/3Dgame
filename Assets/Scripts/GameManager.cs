@@ -56,66 +56,66 @@ public class GameManager : MonoBehaviour
     {
         Level = 0;
         GameSounds.Instance.playClickButtonMenu();
-        SwitchState(State.INIT);
+        changeState(State.INIT, 0f);
     }
 
     public void MenuClicked()
     {
         GameSounds.Instance.playClickButtonMenu();
-        SwitchState(State.MENU);
+        changeState(State.MENU, 0f);
     }
 
     public void LevelsClicked()
     {
         GameSounds.Instance.playClickButtonMenu();
-        SwitchState(State.LVLS);
+        changeState(State.LVLS, 0f);
     }
 
     public void InstClicked()
     {
         GameSounds.Instance.playClickButtonMenu();
-        SwitchState(State.INST);
+        changeState(State.INST, 0f);
     }
 
     public void CreditsClicked()
     {
         GameSounds.Instance.playClickButtonMenu();
-        SwitchState(State.CREDITS);
+        changeState(State.CREDITS, 0f);
     }
 
     public void Level1Clicked()
     {
         Level = 0;
         GameSounds.Instance.playClickButtonMenu();
-        SwitchState(State.INIT);
+        changeState(State.INIT, 0f);
     }
 
     public void Level2Clicked()
     {
         Level = 1;
         GameSounds.Instance.playClickButtonMenu();
-        SwitchState(State.INIT);
+        changeState(State.INIT, 0f);
     }
 
     public void Level3Clicked()
     {
         Level = 2;
         GameSounds.Instance.playClickButtonMenu();
-        SwitchState(State.INIT);
+        changeState(State.INIT, 0f);
     }
 
     public void Level4Clicked()
     {
         Level = 3;
         GameSounds.Instance.playClickButtonMenu();
-        SwitchState(State.INIT);
+        changeState(State.INIT, 0f);
     }
 
     public void Level5Clicked()
     {
         Level = 4;
         GameSounds.Instance.playClickButtonMenu();
-        SwitchState(State.INIT);
+        changeState(State.INIT, 0f);
     }
 
     public void ExitClicked()
@@ -129,23 +129,21 @@ public class GameManager : MonoBehaviour
         Instance = this;
         _menuScene = Instantiate(menuScene);
         GodMode = false;
-        SwitchState(State.MENU);
+        changeState(State.MENU, 0f);
     }
 
 
-    public void SwitchState(State newState, float delay = 0)
+    public void changeState(State newState, float time)
     {
-        StartCoroutine(SwitchDelay(newState, delay));
+        StartCoroutine(changeStateTime(newState, time));
     }
 
-    IEnumerator SwitchDelay(State newState, float delay)
+    IEnumerator changeStateTime(State newState, float time)
     {
-       // _isSwitchingState = true;
-        yield return new WaitForSeconds(delay);
-        EndState();
+        yield return new WaitForSeconds(time);
+        finishCurrentState();
         _state = newState;
-        BeginState(newState);
-       // _isSwitchingState = false;
+        startNewState(newState);
     }
 
     private void changeToMenu()
@@ -158,12 +156,12 @@ public class GameManager : MonoBehaviour
         {
             _menuScene = Instantiate(menuScene);
         }
-        SwitchState(State.MENU);
+        changeState(State.MENU, 0f);
     }
 
-    void BeginState(State newState)
+    void startNewState(State state)
     {
-        switch (newState)
+        switch (state)
         {
             case State.MENU:
                 Cursor.visible = true;
@@ -187,7 +185,7 @@ public class GameManager : MonoBehaviour
                 {
                     Destroy(_currentLevel);
                 }
-                SwitchState(State.LOADLEVEL);
+                changeState(State.LOADLEVEL, 0f);
                 break;
             case State.PLAY:
                 panelPlay.SetActive(true);
@@ -203,25 +201,25 @@ public class GameManager : MonoBehaviour
                     panelLevelCompleted.SetActive(true);
                     timeS = 2f;
                 }
-                SwitchState(State.LOADLEVEL, timeS);
+                changeState(State.LOADLEVEL, timeS);
                 break;
             case State.LOADLEVEL:
                 GodMode = false;
                 if (Level >= levels.Length)
                 {
-                    SwitchState(State.GAMEOVER);
+                    changeState(State.GAMEOVER, 0f);
                 }
                 else
                 {
                     Destroy(_menuScene);
                     _currentLevel = Instantiate(levels[Level]);
-                    SwitchState(State.PLAY);
+                    changeState(State.PLAY, 0f);
                 }
                 break;
             case State.GAMEOVER:
                 GameSounds.Instance.playEndGameTheme();
                 panelGameOver.SetActive(true);
-                SwitchState(State.CREDITS, 2.5f);
+                changeState(State.CREDITS, 2.5f);
                 break;
         }
     }
@@ -238,7 +236,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void EndState()
+    void finishCurrentState()
     {
         switch (_state)
         {

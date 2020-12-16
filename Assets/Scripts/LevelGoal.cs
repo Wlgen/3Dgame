@@ -26,6 +26,6 @@ public class LevelGoal : MonoBehaviour
     private void changeLevel()
     {
         _confetti.Stop();
-        GameManager.Instance.SwitchState(GameManager.State.LEVELCOMPLETED);
+        GameManager.Instance.changeState(GameManager.State.LEVELCOMPLETED, 0f);
     }
 }
